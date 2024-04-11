@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
 	host : 'localhost',
   user : 'root',
 	password : '',
-  database : "students",
+  database : 'students',
 });
 
 connection.connect(function(error){
@@ -22,27 +22,27 @@ connection.connect(function(error){
 	}
 });
 
-app.get("/chapter/:subjectID",function(req, resp) {
-    const subject_id = req.params.subject_id;
-    const sql = `SELECT * FROM chapter WHERE subject_id = ${subject_id}`;
+app.get("/chapter/:SubjectId",function(req, res) {
+    const SubjectId = req.params.SubjectId;
+    const sql = `SELECT * FROM chapter WHERE subject_id = ${SubjectId}`;
     db.query(sql, (err, result) => {
       if (err) throw err;
       res.send(result);
     });
 });
 
-app.get("/subtopics/:chapterID",function(req, resp) {
-  const chapter_id = req.params.chapter_id;
-  const sql = `SELECT * FROM subtopics WHERE subject_id = ${chapter_id}`;
+app.get("/subtopics/:ChapterId",function(req, res) {
+  const ChapterId = req.params.ChapterId;
+  const sql = `SELECT * FROM subtopics WHERE chapter_id = ${ChapterId}`;
   db.query(sql, (err, result) => {
     if (err) throw err;
     res.send(result);
   });
 });
 
-app.get("/content/:subtopicID",function(req, resp) {
-  const subtopic_id = req.params.subtopic_id;
-  const sql = `SELECT * FROM content WHERE subject_id = ${subtopic_id}`;
+app.get("/content/:SubtopicId",function(req, res) {
+  const SubtopicId = req.params.SubtopicId;
+  const sql = `SELECT * FROM content WHERE subtopic_id = ${SubtopicId}`;
   db.query(sql, (err, result) => {
     if (err) throw err;
     res.send(result);
